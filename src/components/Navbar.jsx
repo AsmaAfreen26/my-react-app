@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Link } from 'react-router'// links are used to load pages dynamically instead of refreshing, if a and href were to be used the page is reloaded and shown, which is not efficient for a asingle page to load a single content, just like youtube, has history, library, the content is shown dynamically without loading the page.
 export default function Navbar(props) {
 

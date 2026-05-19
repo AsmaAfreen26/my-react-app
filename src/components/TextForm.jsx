@@ -57,11 +57,11 @@ const textareaStyle = {
                     <textarea className="form-control" value={text} style={btnStyle}
                     onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn mx-2 my-2" style={btnStyle} onClick={handleUpClick}>Convert to Uppercase</button>
-                <button className="btn mx-2 my-2" style={btnStyle} onClick={handleLoClick}>Convert to LowerCase</button>
-                <button className="btn mx-2 my-2" style={btnStyle} onClick={handleProperClick}>Convert to Propercase</button>
-                <button className="btn mx-2 my-2" style={btnStyle} onClick={handleCamelCase}>Convert to CamelCase</button>
-                <button className="btn mx-2 my-2" style={btnStyle} onClick={handleClearText}>Clear Text</button>
+                <button disabled={text.length === 0} className="btn mx-2 my-2" style={btnStyle} onClick={handleUpClick}>Convert to Uppercase</button>
+                <button disabled={text.length === 0} className="btn mx-2 my-2" style={btnStyle} onClick={handleLoClick}>Convert to LowerCase</button>
+                <button disabled={text.length === 0} className="btn mx-2 my-2" style={btnStyle} onClick={handleProperClick}>Convert to Propercase</button>
+                <button disabled={text.length === 0} className="btn mx-2 my-2" style={btnStyle} onClick={handleCamelCase}>Convert to CamelCase</button>
+                <button disabled={text.length === 0} className="btn mx-2 my-2" style={btnStyle} onClick={handleClearText}>Clear Text</button>
             </div>
             <div className="container my-3" style={{
                 backgroundColor: props.mode === 'light' ? 'dark' : 'light',
@@ -69,9 +69,9 @@ const textareaStyle = {
             }} >
                 <h3>Your text summary</h3>
                 <p><b>{text.split(" ").filter((w) => w !== "").length}</b> and <b>{text.length}</b> characters</p>
-                <p><b>{0.008 * text.split(" ").length}</b> minutes to read</p>
+                <p><b>{0.008 * text.split(" ").filter((w) => w !== "").length}</b> minutes to read</p>
                 <h4>Preview</h4>
-                <p>{text.length > 0 ? text : 'Enter something above to preview it'}</p>
+                <p>{text.length > 0 ? text : 'Nothing to preview'}</p>
             </div>
         </>
     )

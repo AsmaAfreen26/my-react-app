@@ -3,7 +3,7 @@ import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import About from './components/About'
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -11,14 +11,11 @@ import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState('light');
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState<{ message: string; type: string } | null>(null)
   const [color, setColor] = useState('white')
 
-  const showAlert = (message, type) => {
-    setAlert({
-      message: message,
-      type: type
-    })
+  const showAlert = (message: string, type: string) => {
+    setAlert({message,type})
     setTimeout(() => {
       setAlert(null)
     }, 1000)
@@ -36,7 +33,7 @@ function App() {
     }
   }
 
-  const changeColor = (color) => {
+  const changeColor = (color: string) => {
     setColor(color)
     document.body.style.backgroundColor = color
 
@@ -47,13 +44,13 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Navbar title="TextUtils" aboutText="About TextUtils" mode={mode} toggleMode={toggleMode} changeColor={changeColor} />
+    <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} changeColor={changeColor} />
       <Alert alert={alert} />
       <div className="container my-3">
          <Routes>                       {/* ← Switch → Routes */}
-          <Route path="/about" element={<About />} />   {/* ← element prop instead of children */}
+          <Route path="/about" element={<About mode={mode}/>} />   {/* ← element prop instead of children */}
           <Route path="/" element={
-            <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={mode} changeColor={changeColor} color={color} />
+            <TextForm showAlert={showAlert} heading="Tr TextUtils - Word Counter, Character Counter, Text Converter" mode={mode} changeColor={changeColor} color={color} />
           } />
         </Routes>
       </div>
